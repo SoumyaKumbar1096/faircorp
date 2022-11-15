@@ -10,7 +10,7 @@ public class BuildingDto {
     private Long id;
     private String name;
     private Double outsideTemperature;
-    private List<Room> rooms;
+    //private List<Room> rooms;
 
     public BuildingDto(){}
 
@@ -43,12 +43,12 @@ public class BuildingDto {
     public void setOutsideTemperature(Double outsideTemperature) {
         this.outsideTemperature = outsideTemperature;
     }
-
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
+//
+//    public List<Room> getRooms() {
+//        return rooms;
+//    }
+//
+//    public void setRooms(List<Room> rooms) {
+//        this.rooms = rooms;
+//    }
 }

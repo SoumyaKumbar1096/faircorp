@@ -1,10 +1,12 @@
 package com.emse.spring.faircorp.web;
 
 import com.emse.spring.faircorp.api.WindowController;
+import com.emse.spring.faircorp.dao.BuildingDao;
 import com.emse.spring.faircorp.dao.RoomDao;
 import com.emse.spring.faircorp.dao.WindowDao;
 
 import com.emse.spring.faircorp.dto.WindowDto;
+import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
@@ -20,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 import java.util.Optional;
 
+//import org.springframework.security.test.context.support.WithMockUser;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -43,7 +46,11 @@ class WindowControllerTest {
     @MockBean
     private RoomDao roomDao;
 
+    @MockBean
+    private BuildingDao buildingDao;
+
     @Test
+    //@WithMockUser(username = "user", roles = "USER")
     void shouldLoadWindows() throws Exception {
         given(windowDao.findAll()).willReturn(List.of(
                 createWindow("window 1"),
@@ -58,6 +65,7 @@ class WindowControllerTest {
     }
 
     @Test
+    //@WithMockUser(username = "user", roles = "USER")
     void shouldLoadAWindowAndReturnNullIfNotFound() throws Exception {
         given(windowDao.findById(999L)).willReturn(Optional.empty());
 
@@ -69,6 +77,7 @@ class WindowControllerTest {
     }
 
     @Test
+    //@WithMockUser(username = "user", roles = "USER")
     void shouldLoadAWindow() throws Exception {
         given(windowDao.findById(999L)).willReturn(Optional.of(createWindow("window 1")));
 
@@ -80,6 +89,7 @@ class WindowControllerTest {
     }
 
     @Test
+    //@WithMockUser(username = "user", roles = "USER")
     void shouldSwitchWindow() throws Exception {
         Window expectedWindow = createWindow("window 1");
         Assertions.assertThat(expectedWindow.getWindowStatus()).isEqualTo(WindowStatus.OPEN);
@@ -94,6 +104,7 @@ class WindowControllerTest {
     }
 
     @Test
+    //@WithMockUser(username = "user", roles = "USER")
     void shouldUpdateWindow() throws Exception {
         Window expectedWindow = createWindow("window 1");
         expectedWindow.setId(1L);
@@ -110,6 +121,7 @@ class WindowControllerTest {
     }
 
     @Test
+    //@WithMockUser(username = "user", roles = "USER")
     void shouldCreateWindow() throws Exception {
         Window expectedWindow = createWindow("window 1");
         expectedWindow.setId(null);
@@ -125,13 +137,15 @@ class WindowControllerTest {
     }
 
     @Test
+    //@WithMockUser(username = "user", roles = "USER")
     void shouldDeleteWindow() throws Exception {
-        mockMvc.perform(delete("/api/windows/999"))
+        mockMvc.perform(delete("/api/windows/-9").accept(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     private Window createWindow(String name) {
-        Room room = new Room("S1", 1);
+        Building building = buildingDao.getReferenceById(-10L);
+        Room room = new Room("S1", 2, building);
         return new Window(name, WindowStatus.OPEN, room);
     }
 

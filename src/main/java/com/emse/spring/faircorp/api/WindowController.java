@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("api/windows")
 @Transactional
+@CrossOrigin
 public class WindowController {
 
     private final WindowDao windowDao;
@@ -61,6 +62,7 @@ public class WindowController {
 
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id){
+
         windowDao.deleteById(id);
     }
 

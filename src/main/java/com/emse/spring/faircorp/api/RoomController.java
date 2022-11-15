@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/rooms")
 @Transactional
+@CrossOrigin
 public class RoomController {
 
     private final RoomDao roomDao;
@@ -35,7 +36,6 @@ public class RoomController {
 
     @GetMapping
     public List<RoomDto> findAll(){
-
         return roomDao.findAll().stream().map(RoomDto::new).collect(Collectors.toList());
     }
 
