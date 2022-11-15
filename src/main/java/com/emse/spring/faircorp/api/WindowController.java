@@ -6,9 +6,10 @@ import com.emse.spring.faircorp.dto.WindowDto;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
-import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,14 +45,14 @@ public class WindowController {
 
     @PostMapping
     public WindowDto create(@RequestBody WindowDto dto){
-        Room room = roomDao.getById(dto.getRoomId());
+        Room room = roomDao.getReferenceById(dto.getRoomId());
         Window window = null;
 
         // On creation id is not defined
         if (dto.getId() == null){
             window = windowDao.save(new Window(dto.getName(), dto.getWindowStatus(), room));
         } else {
-            window = windowDao.getById(dto.getId());
+            window = windowDao.getReferenceById(dto.getId());
             window.setWindowStatus(dto.getWindowStatus());
         }
 

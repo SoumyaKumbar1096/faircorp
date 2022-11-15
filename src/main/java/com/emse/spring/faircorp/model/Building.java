@@ -25,10 +25,9 @@ public class Building {
 
     public Building(){}
 
-    public Building(Long id, String name){
-
-        this.id = id;
+    public Building( String name, Double outsideTemperature){
         this.name = name;
+        this.outsideTemperature = outsideTemperature;
     }
 
     public Long getId() {

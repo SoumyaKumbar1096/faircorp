@@ -17,7 +17,7 @@ public class WindowCustomDaoImpl implements WindowCustomDao{
 
     @Override
     public List<Window> findRoomOpenWindows(Long id) {
-        String jpql = "select w from Window w where w.room.id = :id and w.windowStatus= :status";
+        String jpql = "select w from Window w where w.room.id = :id and w.window_status= :status";
         return em.createQuery(jpql, Window.class)
                 .setParameter("id", id)
                 .setParameter("status", WindowStatus.OPEN)
