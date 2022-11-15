@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import org.springframework.security.test.context.support.WithMockUser;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
@@ -41,7 +42,7 @@ public class HeaterControllerTest {
     private BuildingDao buildingDao;
 
     @Test
-    //@WithMockUser(username = "user", password = "password", roles = "USER")
+    @WithMockUser(username = "user", password = "password", roles = "USER")
     void shouldCreateHeater() throws Exception{
         Heater expectedHeater = createHeater("Heater 1");
         expectedHeater.setId(null);

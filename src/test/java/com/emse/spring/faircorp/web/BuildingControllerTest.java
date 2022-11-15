@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.test.context.support.WithMockUser;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -38,6 +39,7 @@ public class BuildingControllerTest {
     private BuildingDao buildingDao;
 
     @Test
+    @WithMockUser(username = "user", password = "password", roles = "USER")
     void shouldLoadBuildings() throws  Exception{
         given(buildingDao.findAll()).willReturn(List.of(
                 createBuilding("Cours Fauriel")
@@ -51,6 +53,7 @@ public class BuildingControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "password", roles = "USER")
     void shouldLoadABuildingAndReturnNullIfNotFound() throws Exception{
         given(buildingDao.findById(999L)).willReturn(Optional.empty());
 
@@ -62,6 +65,7 @@ public class BuildingControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "password", roles = "USER")
     void shouldLoadABuilding() throws Exception {
         given(buildingDao.findById(999L)).willReturn(Optional.of(createBuilding("Cours Fauriel")));
 
@@ -73,6 +77,7 @@ public class BuildingControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "password", roles = "USER")
     void shouldUpdateBuilding() throws Exception{
         Building expectedBuilding = createBuilding("Cours Fauriel");
         expectedBuilding.setId(1L);
@@ -89,6 +94,7 @@ public class BuildingControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "password", roles = "USER")
     void shoudCreateBuilding() throws Exception{
         Building expectedBuilding = createBuilding("Cours Fauriel");
         expectedBuilding.setId(null);
@@ -103,6 +109,7 @@ public class BuildingControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "password", roles = "ADMIN")
     void shouldDeleteBuilding() throws Exception{
         mockMvc.perform(delete("/api/buildings/999"))
                 .andExpect(status().isOk());

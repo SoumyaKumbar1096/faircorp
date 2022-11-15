@@ -29,11 +29,7 @@ public class BuildingDaoTest {
     }
 
 
-    @Test
-    public void shouldFindAllWindows(){
-        List<Window> windowList = buildingDao.findAllWindows(-10L);
-        Assertions.assertThat(windowList).isNotEmpty();
-    }
+
 
     @Test
     public void shouldNotFindWindows(){
@@ -42,11 +38,7 @@ public class BuildingDaoTest {
     }
 
 
-    @Test
-    public void shouldFindAllHeaters(){
-        List<Heater> heaterList = buildingDao.findAllHeaters(-10L);
-        Assertions.assertThat(heaterList).isNotEmpty();
-    }
+
 
     @Test
     public void shouldNotFindHeaters(){
