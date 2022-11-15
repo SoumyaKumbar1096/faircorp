@@ -5,10 +5,9 @@ import com.emse.spring.faircorp.model.Window;
 
 import java.util.List;
 
-public interface WindowCustomDao {
+public interface BuildingCustomDao {
 
+    List<Window> findAllWindows(Long id);
 
-    List<Window> findRoomOpenWindows(Long id);
-
-    List<Window> deleteWindowsByRoom(Long id);
+    List<Heater> findAllHeaters(Long id);
 }
