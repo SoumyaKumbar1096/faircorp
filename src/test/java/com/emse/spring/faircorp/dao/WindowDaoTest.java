@@ -21,6 +21,9 @@ public class WindowDaoTest {
     @Autowired
     private WindowDao windowDao;
 
+    @Autowired
+    private RoomDao roomDao;
+
     @Test
     public void shouldFindAWindow(){
         Window window = windowDao.getReferenceById(-10L);
@@ -46,15 +49,19 @@ public class WindowDaoTest {
     }
 
     @Test
-    public void shouldDeleteWindowsRoom(){
-        Room room = RoomDao.getById(-10L);
-        List<Long> roomIds = room.getAll_windows().stream().map(Window::getId).collect(Collectors.toList());
-        Assertions.assertThat(roomIds.size()).isEqualTo(2);
+    public void shouldDeleteWindowsInRoom(){
+        Room room = roomDao.getReferenceById(-10L);
 
-        windowDao.deleteByRoom(-10L);
-        List<Window> result = windowDao.findAllById(roomIds);
+
+        List<Long> windowIds = room.getAllWindows().stream().map(Window::getId).collect(Collectors.toList());
+
+        Assertions.assertThat(windowIds.size()).isEqualTo(2);
+
+        windowDao.deleteByRoomId(-10L);
+        List<Window> result = windowDao.findAllById(windowIds);
         Assertions.assertThat(result).isEmpty();
     }
+
 
 
 }

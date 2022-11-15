@@ -1,18 +1,11 @@
 package com.emse.spring.faircorp.dao;
 
 import com.emse.spring.faircorp.model.Room;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class RoomDao {
-    public static Room getById(long l) {
-        return null;
-    }
+public interface RoomDao extends JpaRepository<Room, Long>, RoomCustomDao {
 
-    public Room getOne(long l) {
-        return null;
-    }
+    @Override
+    Room getReferenceById(Long id);
 
-
-    public Object getReferenceById(long anyLong) {
-        return null;
-    }
 }

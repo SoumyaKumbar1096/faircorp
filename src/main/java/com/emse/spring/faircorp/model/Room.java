@@ -17,16 +17,16 @@ public class Room {
     private String name;
 
     @Column
-    private Double current_temperature;
+    private Double currentTemperature;
 
     @Column
-    private Double target_temperature;
+    private Double targetTemperature;
 
     @OneToMany(mappedBy = "room")
-    private List<Heater> all_heaters;
+    private List<Heater> allHeaters;
 
     @OneToMany(mappedBy = "room")
-    private List<Window> all_windows;
+    private List<Window> allWindows;
 
 
     @ManyToOne
@@ -63,35 +63,43 @@ public class Room {
         this.name = name;
     }
 
-    public Double getCurrent_temperature() {
-        return current_temperature;
+    public Double getCurrentTemperature() {
+        return currentTemperature;
     }
 
-    public void setCurrent_temperature(Double current_temperature) {
-        this.current_temperature = current_temperature;
+    public void setCurrentTemperature(Double currentTemperature) {
+        this.currentTemperature = currentTemperature;
     }
 
-    public Double getTarget_temperature() {
-        return target_temperature;
+    public Double getTargetTemperature() {
+        return targetTemperature;
     }
 
-    public void setTarget_temperature(Double target_temperature) {
-        this.target_temperature = target_temperature;
+    public void setTargetTemperature(Double targetTemperature) {
+        this.targetTemperature = targetTemperature;
     }
 
-    public List<Heater> getAll_heaters() {
-        return all_heaters;
+    public List<Heater> getAllHeaters() {
+        return allHeaters;
     }
 
-    public void setAll_heaters(List<Heater> all_heaters) {
-        this.all_heaters = all_heaters;
+    public void setAllHeaters(List<Heater> allHeaters) {
+        this.allHeaters = allHeaters;
     }
 
-    public List<Window> getAll_windows() {
-        return all_windows;
+    public List<Window> getAllWindows() {
+        return allWindows;
     }
 
-    public void setAll_windows(List<Window> all_windows) {
-        this.all_windows = all_windows;
+    public void setAllWindows(List<Window> allWindows) {
+        this.allWindows = allWindows;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 }

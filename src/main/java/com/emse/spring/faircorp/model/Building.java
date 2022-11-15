@@ -14,7 +14,10 @@ public class Building {
     private Long id;
 
     @Column
-    private Double outside_temperature;
+    private String name;
+
+    @Column
+    private Double outsideTemperature;
 
     @OneToMany(mappedBy = "building")
     private List<Room> rooms;
@@ -22,8 +25,10 @@ public class Building {
 
     public Building(){}
 
-    public Building(Long id){
+    public Building(Long id, String name){
+
         this.id = id;
+        this.name = name;
     }
 
     public Long getId() {
@@ -34,12 +39,12 @@ public class Building {
         this.id = id;
     }
 
-    public Double getOutside_temperature() {
-        return outside_temperature;
+    public Double getOutsideTemperature() {
+        return outsideTemperature;
     }
 
-    public void setOutside_temperature(Double outside_temperature) {
-        this.outside_temperature = outside_temperature;
+    public void setOutsideTemperature(Double outsideTemperature) {
+        this.outsideTemperature = outsideTemperature;
     }
 
     public List<Room> getRooms() {
@@ -48,5 +53,13 @@ public class Building {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

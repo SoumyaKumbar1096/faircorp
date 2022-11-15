@@ -13,13 +13,13 @@ public class BuildingCustomDaoImpl implements BuildingCustomDao{
 
     @Override
     public List<Window> findAllWindows(Long id) {
-        String jpql = "select w from Window w";
-        return em.createQuery(jpql, Window.class).getResultList();
+        String jpql = "select w from Window w where w.building.id= :id";
+        return em.createQuery(jpql, Window.class).setParameter("id", id).getResultList();
     }
 
     @Override
     public List<Heater> findAllHeaters(Long id) {
-        String jpql = "select h from Heater h";
-        return em.createQuery(jpql, Heater.class).getResultList();
+        String jpql = "select h from Heater h where h.building.id= :id";
+        return em.createQuery(jpql, Heater.class).setParameter("id", id).getResultList();
     }
 }

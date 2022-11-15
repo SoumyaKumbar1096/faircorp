@@ -22,6 +22,7 @@ public class Window {
     @Enumerated(EnumType.STRING)
     private WindowStatus window_status;
 
+
     public Window(){
     }
 
