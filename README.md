@@ -9,9 +9,9 @@ The Application has:
 * 4 Data Access Objects (DAO) - BuildingDao, RoomDao, HeaterDao, WindowDao
 * 1 Different types of users
 
-* Total no of unit tests 30
+* Total no of unit tests 26
     *  Dao - 12 unit tests
-    * endpoints - 25 unit tests
+    * endpoints - 14 unit tests
 
 User Credentials:
 * ROLE **ADMIN**
@@ -71,5 +71,3 @@ The application is hosted on Clever Cloud at [faircorp-SoumyaKUMBAR](https://app
 | **DELETE** | /api/heaters/{id} | deletes a heater by id|
 | **PUT** | /api/heaters/{id}/switch | inverts heater's status if it was ON it will become OFF or if it was OFF it will become ON|
 
-## Test-Coverage
-All unit testings passed successfully

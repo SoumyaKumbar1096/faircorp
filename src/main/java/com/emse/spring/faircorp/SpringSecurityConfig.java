@@ -59,8 +59,8 @@ public class SpringSecurityConfig {
 
     }
     @Bean
-    @Order(2) // (1)
-    public SecurityFillterChain AdminfilterChain(HttpSecurity http) throws Exception {
+    @Order(2)
+    public SecurityFilterChain AdminfilterChain(HttpSecurity http) throws Exception {
         return http
                 .antMatcher("/api/**")
                 .authorizeRequests(authorize -> authorize.anyRequest().hasRole(ROLE_ADMIN))
